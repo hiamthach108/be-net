@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Mailkit" Version="4.7.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
@@ -23,7 +25,11 @@
     <PackageReference Include="MySql.Data" Version="9.0.0" />
     <PackageReference Include="MySql.Data.EntityFramework" Version="9.0.0" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.5" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Google.Apis" Version="1.68.0" />
+		<PackageReference Include="Google.Cloud.Storage.V1" Version="4.10.0" />
+		<PackageReference Include="MailKit" Version="4.6.0" />
   </ItemGroup>
 
 </Project>
