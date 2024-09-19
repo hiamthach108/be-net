@@ -1,4 +1,4 @@
-namespace lms_server.Application.Shared.Constant;
+namespace Application.Shared.Constant;
 
 public static class UserConst
 {

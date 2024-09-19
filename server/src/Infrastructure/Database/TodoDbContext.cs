@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Users;
 using Domain.Role;
 using Domain.Store;
-using lms_server.Application.Shared.Constant;
+using Application.Shared.Constant;
 
 public class TodoDbContext : DbContext
 {

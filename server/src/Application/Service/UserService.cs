@@ -8,7 +8,7 @@ using AutoMapper;
 using Azure;
 using Database;
 using Domain.Users;
-using lms_server.Application.Shared.Constant;
+using Application.Shared.Constant;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Users;
 
