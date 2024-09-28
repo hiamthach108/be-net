@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Domain.Users;
 using Domain.Role;
 using Domain.Store;
+using Domain.Product;
 using Application.Shared.Constant;
 
 public class TodoDbContext : DbContext
@@ -54,6 +55,16 @@ public class TodoDbContext : DbContext
       e.Property(e => e.CreatedAt).IsRequired().HasDefaultValueSql("now()");
       e.Property(e => e.UpdatedAt).IsRequired().HasDefaultValueSql("now()");
       e.HasMany(x => x.Users).WithMany(x => x.Stores);
+    });
+    builder.Entity<Product>(e =>
+    {
+      e.HasKey(x => x.Id);
+      e.Property(x => x.Name).IsRequired();
+      e.Property(x => x.Description).IsRequired(false).HasMaxLength(1000);
+      e.Property(x => x.Price).IsRequired();
+      e.Property(x => x.Status).IsRequired().HasMaxLength(1000);
+     
+   
     });
   }
 

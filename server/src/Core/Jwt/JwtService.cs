@@ -8,7 +8,7 @@ using System.Text;
 
 public interface IJwtService
 {
-  string GenerateToken(Guid userId, Guid sessionId, string email, UserStatusEnum status, bool isSuperAdmin, int exp);
+  string GenerateToken(Guid userId, Guid sessionId, string email, UserStatusEnum status, int exp);
   Payload? ValidateToken(string token);
 }
 
@@ -24,7 +24,7 @@ public class JwtService : IJwtService
     _handler = new JwtSecurityTokenHandler();
   }
 
-  public string GenerateToken(Guid userId, Guid sessionId, string email, UserStatusEnum status, bool isSuperAdmin, int exp)
+  public string GenerateToken(Guid userId, Guid sessionId, string email, UserStatusEnum status, int exp)
   {
     var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET") ?? DEFAULT_SECRET);
     var tokenDescriptor = new SecurityTokenDescriptor
@@ -33,7 +33,6 @@ public class JwtService : IJwtService
       {
         new("sessionId", sessionId.ToString()),
         new("status", status.ToString()),
-        new("isSuperAdmin", isSuperAdmin.ToString()),
         new("email", email)
       }),
       Issuer = userId.ToString(),
@@ -67,8 +66,7 @@ public class JwtService : IJwtService
       UserId = Guid.Parse(result.Issuer),
       Email = result.Claims.First(x => x.Type == "email").Value,
       SessionId = Guid.Parse(result.Claims.First(x => x.Type == "sessionId").Value),
-      Status = Enum.Parse<UserStatusEnum>(result.Claims.First(x => x.Type == "status").Value),
-      IsSuperAdmin = bool.Parse(result.Claims.First(x => x.Type == "isSuperAdmin").Value)
+      Status = Enum.Parse<UserStatusEnum>(result.Claims.First(x => x.Type == "status").Value)
     };
 
     return payload;

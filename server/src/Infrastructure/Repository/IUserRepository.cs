@@ -11,6 +11,7 @@ public interface IUserRepository
   Task<User> AddAsync(User user);
   Task<User> UpdateAsync(Guid userId, User user);
   Task<User> DeleteAsync(User user);
+  Task<User> GetUserByEmail(string email);
 }
 
 public class UserList

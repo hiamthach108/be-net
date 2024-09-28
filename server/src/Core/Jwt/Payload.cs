@@ -8,5 +8,4 @@ public class Payload
   public string Email { get; set; } = null!;
   public Guid SessionId { get; set; }
   public UserStatusEnum Status { get; set; }
-  public bool IsSuperAdmin { get; set; }
 }

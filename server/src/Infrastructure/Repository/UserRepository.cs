@@ -90,4 +90,11 @@ public class UserRepository : IUserRepository
 
     return result.Entity;
   }
+
+  public async Task<User> GetUserByEmail(string email)
+  {
+    var user = _dbContext.Users.FirstOrDefault(u => u.Email == email);
+
+    return user;
+  }
 }
