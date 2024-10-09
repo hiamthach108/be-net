@@ -2,6 +2,7 @@ namespace TodoApi.Controllers;
 
 using Application.DTOs.User;
 using Application.DTOs.Users;
+using Application.Middlewares;
 using Application.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -57,5 +58,14 @@ public class UserController : ControllerBase
     _logger.LogInformation("Delete user request received");
 
     return await _service.HandleDeleteAsync(id);
+  }
+
+  [Protected]
+  [HttpGet("profile")]
+  public async Task<IActionResult> GetProfile()
+  {
+    _logger.LogInformation("Get user profile request received");
+
+    return await _service.HandleGetProfileAsync();
   }
 }

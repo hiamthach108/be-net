@@ -21,6 +21,7 @@ public interface IUserService
   Task<IActionResult> HandleCreateAsync(UserCreateDto dto);
   Task<IActionResult> HandleUpdateAsync(Guid id, UserUpdateDto dto);
   Task<IActionResult> HandleDeleteAsync(Guid id);
+  Task<IActionResult> HandleGetProfileAsync();
 }
 
 public class UserService : BaseService, IUserService
@@ -103,5 +104,25 @@ public class UserService : BaseService, IUserService
     await _repository.UpdateAsync(id, user);
 
     return SuccessResp.Ok("User updated successfully");
+  }
+
+  public async Task<IActionResult> HandleGetProfileAsync()
+  {
+    var payload = ExtractPayload();
+    if (payload == null)
+    {
+      return ErrorResp.Unauthorized("Invalid token");
+    }
+
+    var user = await _repository.GetByIdAsync(payload.UserId);
+
+    if (user == null)
+    {
+      return ErrorResp.NotFound("User not found");
+    }
+
+    var result = _mapper.Map<UserDto>(user);
+
+    return SuccessResp.Ok(result);
   }
 }

@@ -1,0 +1,11 @@
+[Bb]in/
+
+[Oo]bj/
+
+./appsettings.Development.json
+
+.vs/
+
+lms_server.csproj.user
+
+*.sln
